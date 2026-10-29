@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CertiProof — Certificato di Autenticità</title>
+  <meta name="description" content="CertiProof: servizio professionale per generare certificati di autenticità digitali univoci con impronta SHA-256 e PDF certificato.">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="#home" class="brand" aria-label="CertiProof home">
+        <span class="brand-seal">✦</span>
+        <span class="brand-name">Certi<em>Proof</em></span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home"      data-route="home">Home</a>
+        <a href="#faq"       data-route="faq">FAQ</a>
+        <a href="#contatti"  data-route="contatti">Contatti</a>
+        <a href="#privacy"   data-route="privacy">Privacy</a>
+        <a href="#terms"     data-route="terms">Termini</a>
+        <a href="#disclaimer" data-route="disclaimer">Disclaimer</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app">
+
+    <!-- ============ HOME ============ -->
+    <section data-page="home" class="page">
+
+      <div class="hero">
+        <span class="badge">Servizio professionale · Emesso da CERTI PROOF DIGITAL SERVICES ™</span>
+        <h1>Certificati di autenticità<br><em>digitali, univoci, verificabili.</em></h1>
+        <p class="hero-sub">
+          CertiProof genera un certificato professionale con un <strong>codice univoco</strong>
+          derivato da un'impronta crittografica SHA-256. Il PDF ufficiale è rilasciato
+          da <strong>CERTI PROOF DIGITAL SERVICES ™</strong>.
+        </p>
+      </div>
+
+      <div class="layout">
+
+        <!-- FORM -->
+        <section class="card" id="formCard">
+          <h2>1 · Dati del bene</h2>
+
+          <form id="certForm" autocomplete="off" novalidate>
+            <div class="field">
+              <label for="nome">Nome del bene / opera *</label>
+              <input type="text" id="nome" required placeholder="Es. Orologio subacqueo vintage">
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="autore">Autore / Produttore *</label>
+                <input type="text" id="autore" required placeholder="Es. Mario Rossi">
+              </div>
+              <div class="field">
+                <label for="proprietario">Proprietario *</label>
+                <input type="text" id="proprietario" required placeholder="Es. Luca Bianchi">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="data">Data di emissione *</label>
+                <input type="date" id="data" required>
+              </div>
+              <div class="field">
+                <label for="categoria">Categoria</label>
+                <select id="categoria">
+                  <optgroup label="Arte, cultura e collezionismo">
+                    <option>Arte e belle arti</option>
+                    <option>Fotografia e stampe</option>
+                    <option>Collezionismo</option>
+                    <option>Autografi e memorabilia</option>
+                    <option>Antiquariato e vintage</option>
+                    <option>Libri e manoscritti</option>
+                    <option>Edizioni limitate e serie numerate</option>
+                  </optgroup>
+                  <optgroup label="Lusso e oggetti di pregio">
+                    <option>Gioielli e pietre preziose</option>
+                    <option>Orologi e orologeria</option>
+                    <option>Moda e accessori</option>
+                  </optgroup>
+                  <optgroup label="Artigianato e design">
+                    <option>Artigianato e handmade</option>
+                    <option>Design e arredamento</option>
+                    <option>Prodotti artigianali e commerciali</option>
+                  </optgroup>
+                  <optgroup label="Tecnologia e mobilità">
+                    <option>Elettronica e informatica</option>
+                    <option>Biciclette e mobilità</option>
+                    <option>Auto e moto</option>
+                    <option>Ricambi e componenti industriali</option>
+                  </optgroup>
+                  <optgroup label="Musica e spettacolo">
+                    <option>Musica e strumenti</option>
+                  </optgroup>
+                  <optgroup label="Digitale, IP e software">
+                    <option>Prodotti digitali e software</option>
+                    <option>Musica, video e opere digitali</option>
+                    <option>Proprietà intellettuale e creazioni</option>
+                    <option>Documenti digitali verificabili</option>
+                  </optgroup>
+                  <optgroup label="Documentazione e servizi">
+                    <option>Certificati di proprietà dichiarata</option>
+                    <option>Provenienza e storico degli oggetti</option>
+                    <option>Restauro e riparazione</option>
+                    <option>Manutenzione e assistenza</option>
+                    <option>Certificati per professionisti</option>
+                    <option>Corsi e formazione</option>
+                  </optgroup>
+                  <optgroup label="Food &amp; beverage">
+                    <option>Prodotti alimentari e bevande</option>
+                    <option>Vino e collezioni da cantina</option>
+                  </optgroup>
+                  <optgroup label="Sport e attrezzature">
+                    <option>Sport e attrezzature</option>
+                  </optgroup>
+                  <optgroup label="Altro">
+                    <option>Altro (generico)</option>
+                  </optgroup>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="descrizione">Descrizione</label>
+              <textarea id="descrizione" rows="4" maxlength="1600"
+                placeholder="Tipologia, marca/autore, modello, materiali, colore, dimensioni, numero di serie, condizioni..."></textarea>
+              <p class="field-note">
+                La descrizione dovrebbe includere tipologia dell’oggetto, marca o autore, modello,
+                materiali, colore, dimensioni, numero di serie, condizioni e caratteristiche distintive.
+                <br>
+                <strong>Importante:</strong> la descrizione deve riportare le informazioni dichiarate
+                dall’utente, senza presentarle automaticamente come verificate. Massimo 200 parole.
+              </p>
+              <div class="word-counter" id="descCounter">0 / 200 parole</div>
+            </div>
+
+            <div class="field">
+              <label for="foto">Immagine dell'oggetto <span class="label-opt">(opzionale)</span></label>
+              <input type="file" id="foto" accept="image/*">
+              <div class="photo-preview" id="photoPreview" hidden>
+                <img id="photoPreviewImg" alt="Anteprima immagine oggetto">
+                <button type="button" class="btn ghost" id="removePhotoBtn">Rimuovi immagine</button>
+              </div>
+            </div>
+
+            <h2 class="mt">2 · Indice di autenticità</h2>
+            <div class="sliders" id="sliders"></div>
+            <p class="hint">Valuta da 0 a 100 ogni criterio: il grafico mostrerà il profilo del bene.</p>
+
+            <div class="form-actions">
+              <button class="btn primary" type="submit" id="generateBtn">Genera certificato</button>
+              <button class="btn ghost reset-btn" type="button" id="resetBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+                Resetta filtri
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- CERTIFICATO -->
+        <section class="cert-wrap">
+
+          <div class="empty" id="emptyState">
+            <div class="empty-icon">📜</div>
+            <p>Il tuo certificato apparirà qui.</p>
+            <p class="muted">Compila il modulo e premi “Genera certificato”.</p>
+          </div>
+
+          <article class="certificate" id="certificate" hidden>
+            <div class="cert-head">
+              <div class="cert-seal">✦</div>
+              <div class="cert-title">
+                <h2>Certificato di Autenticità</h2>
+                <p class="cert-sub">CERTI PROOF DIGITAL SERVICES ™</p>
+              </div>
+              <div class="cert-photo" id="certPhotoWrap" hidden>
+                <img id="certPhoto" alt="Immagine dell'oggetto">
+              </div>
+              <div class="cert-score">
+                <span id="scoreValue">0</span><small>%</small>
+                <em id="scoreLabel">—</em>
+              </div>
+            </div>
+
+            <dl class="cert-details" id="certDetails"></dl>
+
+            <div class="chart-box">
+              <canvas id="certChart"></canvas>
+            </div>
+
+            <div class="cert-foot">
+              <div class="hash-block">
+                <span class="label">Codice univoco certificato · SHA-256</span>
+                <code id="certHash">—</code>
+                <p class="cert-note">
+                  Il codice è unico e non riproducibile. Il PDF è rilasciato ufficialmente da
+                  <strong>CERTI PROOF DIGITAL SERVICES ™</strong>.
+                </p>
+              </div>
+              <div class="cert-actions">
+                <button class="btn ghost" id="copyBtn" type="button">Copia ID</button>
+                <button class="btn gold" id="printBtn" type="button">Stampa / PDF</button>
+              </div>
+            </div>
+
+            <div class="cert-stamp">CERTI PROOF · Certified</div>
+          </article>
+
+        </section>
+      </div>
+
+      <section class="how">
+        <h2>Come funziona</h2>
+        <div class="how-grid">
+          <div class="how-step">
+            <span class="step-num">01</span>
+            <h3>Inserisci i dati</h3>
+            <p>Compila il modulo con i dati del bene e valuta i criteri di autenticità.</p>
+          </div>
+          <div class="how-step">
+            <span class="step-num">02</span>
+            <h3>Completa il pagamento</h3>
+            <p>Il pagamento sicuro è gestito da Stripe: al termine il certificato è sbloccato.</p>
+          </div>
+          <div class="how-step">
+            <span class="step-num">03</span>
+            <h3>Scarica il PDF</h3>
+            <p>Il PDF ufficiale con il codice univoco è emesso da <strong>CERTI PROOF DIGITAL SERVICES ™</strong>.</p>
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section data-page="faq" class="page" hidden>
+      <div class="page-head">
+        <span class="badge">Supporto</span>
+        <h1>Domande frequenti</h1>
+        <p>Tutto ciò che serve sapere sui certificati CertiProof.</p>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>Che cos'è un certificato CertiProof?</summary>
+          <p>È un documento digitale che attesta l'autenticità e il profilo di un bene, generato attraverso un indice ponderato di criteri e corredato da un codice univoco derivato da un'impronta crittografica SHA-256.</p>
+        </details>
+        <details>
+          <summary>Il codice del certificato è davvero unico?</summary>
+          <p>Sì. Il codice viene calcolato tramite SHA-256 sui dati del certificato (timestamp, dati del bene, punteggio e criteri). La probabilità che due certificati generino lo stesso codice è trascurabile, quindi ogni certificato emesso da CERTI PROOF DIGITAL SERVICES ™ ha un ID univoco.</p>
+        </details>
+        <details>
+          <summary>Il PDF è ufficiale?</summary>
+          <p>Sì. Il PDF scaricato tramite il pulsante “Stampa / PDF” riporta l'emissione ufficiale da parte di CERTI PROOF DIGITAL SERVICES ™ e include il codice univoco del certificato.</p>
+        </details>
+        <details>
+          <summary>Come funziona il pagamento?</summary>
+          <p>Il pagamento è gestito da Stripe: puoi pagare in modo sicuro con carta di credito o altri metodi supportati. Dopo aver completato il pagamento, vieni reindirizzato al sito e il certificato viene sbloccato automaticamente.</p>
+        </details>
+        <details>
+          <summary>Come viene calcolato il punteggio di autenticità?</summary>
+          <p>Ogni criterio è ponderato secondo l'importanza relativa (provenienza 25%, materiali 20%, stile 15%, documentazione 15%, conservazione 15%, perizia 10%). Il punteggio finale è la media ponderata dei valori inseriti, arrotondata a un intero.</p>
+        </details>
+        <details>
+          <summary>SHA-256 è sicuro?</summary>
+          <p>Sì. SHA-256 è considerato crittograficamente sicuro: resistente agli attacchi di collisione e di pre-immagine. È lo stesso algoritmo usato in Bitcoin, nei certificati TLS e negli standard FIPS 180-4. Non può essere invertito.</p>
+        </details>
+        <details>
+          <summary>I miei dati vengono salvati?</summary>
+          <p>No. I dati vengono elaborati esclusivamente nel browser dell'utente per garantire la massima riservatezza: nessuna informazione viene trasmessa o archiviata su server remoti. Il certificato generato rimane disponibile nella sessione corrente del browser.</p>
+        </details>
+        <details>
+          <summary>Il certificato ha valore legale?</summary>
+          <p>CertiProof fornisce uno strumento professionale di certificazione dichiarata. Per l'uso legale in specifiche giurisdizioni consulta un professionista e leggi il nostro <a href="#disclaimer">Disclaimer</a>.</p>
+        </details>
+      </div>
+
+      <a class="back-link" href="#home">← Torna alla home</a>
+    </section>
+
+    <!-- ============ CONTATTI ============ -->
+    <section data-page="contatti" class="page" hidden>
+      <div class="page-head">
+        <span class="badge">Contatti</span>
+        <h1>Parliamo del tuo certificato</h1>
+        <p>Per informazioni su emissione, personalizzazioni o supporto professionale.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>CERTI PROOF DIGITAL SERVICES ™</h2>
+          <ul>
+            <li><span class="ico">✉</span> info@certiproof.io</li>
+            <li><span class="ico">☎</span> +39 02 8736 5120</li>
+            <li><span class="ico">⌂</span> Corso Magenta 45, 20123 Milano</li>
+            <li><span class="ico">◷</span> Lun–Ven · 9:00 – 18:00</li>
+          </ul>
+        </div>
+
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="field">
+            <label for="c-nome">Nome e cognome *</label>
+            <input type="text" id="c-nome" required placeholder="Mario Rossi">
+          </div>
+          <div class="field">
+            <label for="c-email">Email *</label>
+            <input type="email" id="c-email" required placeholder="mario@esempio.it">
+          </div>
+          <div class="field">
+            <label for="c-oggetto">Oggetto *</label>
+            <input type="text" id="c-oggetto" required placeholder="Richiesta informazioni">
+          </div>
+          <div class="field">
+            <label for="c-messaggio">Messaggio *</label>
+            <textarea id="c-messaggio" rows="5" required placeholder="Scrivi qui il tuo messaggio..."></textarea>
+          </div>
+          <button class="btn primary" type="submit">Invia messaggio</button>
+          <p class="form-ok" id="contactOk" hidden>✓ Messaggio inviato con successo. Ti risponderemo al più presto.</p>
+        </form>
+      </div>
+
+      <a class="back-link" href="#home">← Torna alla home</a>
+    </section>
+
+    <!-- ============ PRIVACY ============ -->
+    <section data-page="privacy" class="page legal-page" hidden>
+      <div class="page-head">
+        <span class="badge">Informativa</span>
+        <h1>Privacy Policy</h1>
+        <p>Ultimo aggiornamento: 1 gennaio 2026</p>
+      </div>
+
+      <div class="legal">
+        <h2>1. Titolare del trattamento</h2>
+        <p>Il titolare del trattamento dei dati personali è <strong>CERTI PROOF DIGITAL SERVICES ™</strong>, Corso Magenta 45, 20123 Milano — info@certiproof.io.</p>
+
+        <h2>2. Dati raccolti</h2>
+        <p>CertiProof raccoglie esclusivamente i dati inseriti volontariamente dall'utente per la generazione del certificato (nome del bene, autore, proprietario, descrizione, categoria, criteri di autenticità, immagine dell'oggetto). Nessun dato è trasmesso a server remoti: tutta l'elaborazione avviene localmente nel browser. I dati di pagamento sono gestiti direttamente da Stripe.</p>
+
+        <h2>3. Finalità del trattamento</h2>
+        <ul>
+          <li>Generazione del certificato di autenticità richiesto;</li>
+          <li>Calcolo dell'impronta crittografica SHA-256;</li>
+          <li>Esportazione in PDF del documento;</li>
+          <li>Gestione del pagamento tramite Stripe.</li>
+        </ul>
+
+        <h2>4. Base giuridica</h2>
+        <p>Il trattamento si basa sul consenso esplicito dell'utente e sull'esecuzione del servizio richiesto.</p>
+
+        <h2>5. Conservazione dei dati</h2>
+        <p>Nessun dato è conservato su server: alla chiusura della pagina tutte le informazioni inserite vengono eliminate. Il certificato rimane disponibile nella sessione corrente del browser.</p>
+
+        <h2>6. Diritti dell'interessato</h2>
+        <p>In qualsiasi momento puoi esercitare i diritti previsti dal GDPR (accesso, rettifica, cancellazione, limitazione, portabilità, opposizione) scrivendo a info@certiproof.io.</p>
+
+        <h2>7. Cookie</h2>
+        <p>CertiProof non utilizza cookie di profilazione. Possono essere presenti cookie tecnici necessari al funzionamento della pagina e al pagamento sicuro.</p>
+
+        <h2>8. Sicurezza</h2>
+        <p>L'impronta SHA-256 garantisce l'integrità del certificato. Il codice univoco non è invertibile e non consente di risalire ai dati originali senza il documento completo.</p>
+
+        <h2>9. Modifiche</h2>
+        <p>Ci riserviamo il diritto di aggiornare la presente informativa. Le modifiche saranno pubblicate su questa pagina.</p>
+      </div>
+
+      <a class="back-link" href="#home">← Torna alla home</a>
+    </section>
+
+    <!-- ============ TERMS ============ -->
+    <section data-page="terms" class="page legal-page" hidden>
+      <div class="page-head">
+        <span class="badge">Condizioni</span>
+        <h1>Termini di Servizio</h1>
+        <p>Ultimo aggiornamento: 1 gennaio 2026</p>
+      </div>
+
+      <div class="legal">
+        <h2>1. Accettazione</h2>
+        <p>Utilizzando CertiProof accetti i presenti Termini di Servizio. Se non li accetti, ti invitiamo a non utilizzare il servizio.</p>
+
+        <h2>2. Descrizione del servizio</h2>
+        <p>CertiProof è un servizio professionale che consente di generare certificati di autenticità digitali corredati da un codice univoco basato su impronta crittografica SHA-256. Il PDF generato è rilasciato ufficialmente da CERTI PROOF DIGITAL SERVICES ™. Il servizio è soggetto al pagamento del corrispettivo indicato nel checkout sicuro Stripe.</p>
+
+        <h2>3. Utilizzo consentito</h2>
+        <p>L'utente si impegna a utilizzare il servizio in modo lecito, senza fornire informazioni false, diffamatorie o in violazione di diritti di terzi. È responsabilità dell'utente la veridicità dei dati inseriti.</p>
+
+        <h2>4. Pagamenti</h2>
+        <p>I pagamenti sono elaborati da Stripe. CertiProof non memorizza i dati della carta. Il certificato viene sbloccato al completamento del pagamento.</p>
+
+        <h2>5. Unicità del codice</h2>
+        <p>Ogni certificato è identificato da un codice univoco generato tramite SHA-256. Il codice non è modificabile e identifica univocamente il certificato emesso.</p>
+
+        <h2>6. Limitazione di responsabilità</h2>
+        <p>CertiProof fornisce lo strumento tecnologico per la generazione del certificato, ma non garantisce l'effettiva autenticità del bene. Il certificato riflette i dati e i criteri inseriti dall'utente.</p>
+
+        <h2>7. Proprietà intellettuale</h2>
+        <p>Il marchio CERTI PROOF DIGITAL SERVICES ™, il logo e gli elementi grafici sono di proprietà del titolare. È vietata la riproduzione non autorizzata.</p>
+
+        <h2>8. Modifiche al servizio</h2>
+        <p>Ci riserviamo il diritto di modificare, sospendere o interrompere il servizio in qualsiasi momento, senza preavviso.</p>
+
+        <h2>9. Legge applicabile</h2>
+        <p>I presenti termini sono regolati dalla legge italiana. Per qualsiasi controversia è competente il Foro di Milano.</p>
+      </div>
+
+      <a class="back-link" href="#home">← Torna alla home</a>
+    </section>
+
+    <!-- ============ DISCLAIMER ============ -->
+    <section data-page="disclaimer" class="page legal-page" hidden>
+      <div class="page-head">
+        <span class="badge">Avvertenze</span>
+        <h1>Disclaimer</h1>
+        <p>Informazioni importanti sull'uso del servizio.</p>
+      </div>
+
+      <div class="legal">
+        <h2>Natura del certificato</h2>
+        <p>Il certificato emesso da CERTI PROOF DIGITAL SERVICES ™ tramite CertiProof è un documento digitale di <strong>autenticità dichiarata</strong>: riflette i dati e i criteri inseriti dall'utente al momento della generazione e non costituisce di per sé una perizia legale né una certificazione ufficiale della autenticità materiale del bene.</p>
+
+        <h2>Uso del documento</h2>
+        <p>Il certificato può essere utilizzato come documentazione di supporto. Per l'uso legale, commerciale o assicurativo è consigliabile affiancarlo a una perizia riconosciuta da un professionista abilitato.</p>
+
+        <h2>Codice univoco</h2>
+        <p>Il codice SHA-256 identifica univocamente il certificato e ne attesta l'integrità. Non è invertibile e non contiene informazioni personali in chiaro. La sua unicità è garantita dalla funzione crittografica, ma non implica alcuna verifica materiale del bene.</p>
+
+        <h2>Responsabilità dell'utente</h2>
+        <p>L'utente è l'unico responsabile della veridicità dei dati inseriti, dell'uso che fa del certificato generato e della sua diffusione. CertiProof declina ogni responsabilità derivante da un uso improprio del documento.</p>
+
+        <h2>Marchio e riferimento</h2>
+        <p>Il PDF certificato riporta la dicitura <strong>CERTI PROOF DIGITAL SERVICES ™</strong> come ente emittente. Il marchio è utilizzato nel contesto del servizio professionale offerto da CertiProof.</p>
+
+        <h2>Limitazioni tecniche</h2>
+        <p>CertiProof è uno strumento tecnologico. Non garantisce la disponibilità continua del servizio né l'assenza di errori. I dati non vengono conservati su alcun server.</p>
+
+        <h2>Contatti</h2>
+        <p>Per qualsiasi chiarimento scrivi a <strong>info@certiproof.io</strong> o consulta la pagina <a href="#contatti">Contatti</a>.</p>
+      </div>
+
+      <a class="back-link" href="#home">← Torna alla home</a>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h3>Informazioni Certi Proof</h3>
+          <ul class="footer-list">
+            <li><a href="#home">Chi siamo</a></li>
+            <li><a href="#faq">Domande frequenti</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Termini di Servizio</a></li>
+            <li><a href="#disclaimer">Disclaimer</a></li>
+          </ul>
+          <p class="footer-note">
+            <strong>CertiProof Digital Services ™</strong><br>
+            Create. Certify. Verify.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h3>Siti raccomandati</h3>
+          <p class="footer-desc"><strong>CertiProof Digital Services – Piattaforme consigliate</strong></p>
+          <ul class="footer-list platforms">
+            <li><a href="https://www.ebay.it/" target="_blank" rel="noopener">eBay</a></li>
+            <li><a href="https://www.vinted.it/" target="_blank" rel="noopener">Vinted</a></li>
+            <li><a href="https://www.catawiki.com/" target="_blank" rel="noopener">Catawiki</a></li>
+            <li><a href="https://www.chrono24.it/" target="_blank" rel="noopener">Chrono24</a></li>
+            <li><a href="https://www.vestiairecollective.com/" target="_blank" rel="noopener">Vestiaire Collective</a></li>
+            <li><a href="https://stockx.com/" target="_blank" rel="noopener">StockX</a></li>
+            <li><a href="https://www.klekt.com/it" target="_blank" rel="noopener">KLEKT</a></li>
+            <li><a href="https://www.1stdibs.com/" target="_blank" rel="noopener">1stDibs</a></li>
+            <li><a href="https://www.lampoo.com/" target="_blank" rel="noopener">Lampoo</a></li>
+            <li><a href="https://www.subito.it/" target="_blank" rel="noopener">Subito</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Parole chiave</h3>
+          <ul class="footer-list keywords">
+            <li>certificato autenticità</li>
+            <li>certificazione digitale</li>
+            <li>SHA-256</li>
+            <li>identificativo univoco</li>
+            <li>verifica oggetti</li>
+            <li>autenticità beni</li>
+            <li>certificato digitale</li>
+            <li>provenienza oggetti</li>
+            <li>certificazione beni</li>
+            <li>blockchain</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Pagine collegate</h3>
+          <ul class="footer-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+            <li><a href="#privacy">Privacy</a></li>
+            <li><a href="#terms">Termini</a></li>
+            <li><a href="#disclaimer">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-thumbs">
+        <h4>Piattaforme consigliate</h4>
+        <div class="thumb-grid">
+          <span class="thumb">eBay</span>
+          <span class="thumb">Vinted</span>
+          <span class="thumb">Catawiki</span>
+          <span class="thumb">Chrono24</span>
+          <span class="thumb">Vestiaire</span>
+          <span class="thumb">StockX</span>
+          <span class="thumb">KLEKT</span>
+          <span class="thumb">1stDibs</span>
+          <span class="thumb">Lampoo</span>
+          <span class="thumb">Subito</span>
+        </div>
+      </div>
+
+      <div class="payments">
+        <h4>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Pagamenti sicuri
+        </h4>
+        <div class="pay-badges">
+          <span class="pay-badge" aria-label="Stripe">
+            <svg viewBox="0 0 64 24" width="64" height="24" role="img" aria-label="Stripe">
+              <text x="32" y="17" text-anchor="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="#635bff">stripe</text>
+            </svg>
+          </span>
+          <span class="pay-badge" aria-label="PayPal">
+            <svg viewBox="0 0 64 24" width="64" height="24" role="img" aria-label="PayPal">
+              <text x="32" y="17" text-anchor="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="13" font-weight="700" font-style="italic" fill="#003087">PayPal</text>
+            </svg>
+          </span>
+          <span class="pay-badge" aria-label="Visa">
+            <svg viewBox="0 0 64 24" width="64" height="24" role="img" aria-label="Visa">
+              <text x="32" y="17" text-anchor="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="15" font-weight="800" font-style="italic" fill="#1a1f71">VISA</text>
+            </svg>
+          </span>
+          <span class="pay-badge" aria-label="Mastercard">
+            <svg viewBox="0 0 64 24" width="64" height="24" role="img" aria-label="Mastercard">
+              <circle cx="26" cy="12" r="8" fill="#eb001b"/>
+              <circle cx="38" cy="12" r="8" fill="#f79e1b"/>
+              <path d="M32 6.3a8 8 0 0 0 0 11.4 8 8 0 0 0 0-11.4z" fill="#ff5f00"/>
+            </svg>
+          </span>
+          <span class="pay-badge" aria-label="American Express">
+            <svg viewBox="0 0 64 24" width="64" height="24" role="img" aria-label="American Express">
+              <rect x="4" y="3" width="56" height="18" rx="3" fill="#2e77bc"/>
+              <text x="32" y="16.5" text-anchor="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="10.5" font-weight="800" fill="#fff" letter-spacing="0.5">AMEX</text>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="foot-copy">© 2026 CERTI PROOF DIGITAL SERVICES ™ · Tutti i diritti riservati.</p>
+      </div>
+
+    </div>
+
+    <div class="cert-toast" id="certToast" role="status" aria-live="polite" hidden>
+      <span class="dot" aria-hidden="true"></span>
+      <div class="toast-body">
+        <strong id="toastTitle">Nuovo certificato generato</strong>
+        <span class="toast-cat" id="toastCat">—</span>
+      </div>
+    </div>
+
+    <button class="back-to-top" id="backToTop" type="button" aria-label="Torna su">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+      </svg>
+    </button>
+
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
